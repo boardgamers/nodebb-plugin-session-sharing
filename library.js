@@ -44,10 +44,10 @@ var payloadKeys = profileFields.concat([
 var plugin = {
 	ready: false,
 	settings: {
-		name: 'appId',
+		name: 'gaiaform',
 		cookieName: 'token',
-		cookieDomain: undefined,
-		secret: '',
+		cookieDomain: 'gaiaform.io',
+		secret: nconf.get('jwt:secret'),
 		behaviour: 'trust',
 		adminRevalidate: 'off',
 		noRegistration: 'off',
