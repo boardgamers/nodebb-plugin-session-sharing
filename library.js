@@ -42,7 +42,7 @@ var payloadKeys = profileFields.concat([
 ]);
 
 var plugin = {
-	ready: false,
+	ready: true,
 	settings: {
 		name: 'gaiaform',
 		cookieName: 'token',
