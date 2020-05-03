@@ -1,5 +1,5 @@
 {
-  "name": "nodebb-plugin-session-sharing",
+  "name": "nodebb-plugin-session-sharing-gaia-project",
   "version": "4.6.6",
   "description": "Allows login sessions from your app to persist in NodeBB",
   "main": "library.js",
