@@ -46,7 +46,7 @@ var plugin = {
 	settings: {
 		name: 'gaiaform',
 		cookieName: 'token',
-		cookieDomain: 'forum.gaiaform.io',
+		cookieDomain: 'boardgamers.space',
 		secret: nconf.get('jwt:secret'),
 		behaviour: 'trust',
 		adminRevalidate: 'off',
