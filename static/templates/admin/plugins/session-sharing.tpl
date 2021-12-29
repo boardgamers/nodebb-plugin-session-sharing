@@ -29,6 +29,13 @@
 							otherwise the JWT cannot be properly decoded.
 						</p>
 					</div>
+					<div class="form-group">
+						<label for="hostWhitelist">Host Whitelist</label>
+						<input type="text" id="hostWhitelist" name="hostWhitelist" title="Host Whitelist" class="form-control" placeholder="localhost" />
+						<p class="help-block">
+							If set, session-sharing plugin works only on whitelisted domains. Separate with commas, for example: "localhost,test.domain.com".
+						</p>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -39,6 +46,7 @@
 						<select class="form-control" name="behaviour" id="behaviour">
 							<option value="trust">"Trust" &rarr; Shared cookie token used once only to authenticate, session persists even if cookie cleared</option>
 							<option value="revalidate">"Revalidate" &rarr; Shared cookie is checked on every page load, and updated/logged out to reflect changes in cookie</option>
+							<option value="update">"Update" &rarr; Shared cookie is checked on every page load, and updated to reflect changes in cookie. But user is not logged out when cookie is missing</option>
 						</select>
 					</div>
 					<div class="checkbox">
@@ -47,7 +55,7 @@
 								<span class="mdl-switch__label"><strong>Apply revalidation rules to administrators as well</strong></span>
 							</label>
 							<p class="help-block">
-								Administrators are exempt from the <code>revalidate</code> behaviour because a 
+								Administrators are exempt from the <code>revalidate</code> behaviour because a
 								misconfiguration could lock them out of the admin panel. Enable this option to force
 								administrators to also undergo cookie revalidation, and thereby increasing security.
 							</p>
@@ -74,6 +82,15 @@
 							Basic information such as username and id are required, while others are optional (first name, last name, etc.). Enable this setting to allow
 							NodeBB to automatically sync up the local profile with the information provided.
 						</div>
+					</div>
+					<div class="checkbox">
+						<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+							<input class="mdl-switch__input" type="checkbox" id="allowBannedUsers" name="allowBannedUsers" />
+							<span class="mdl-switch__label"><strong>Allow banned users to be logged in and placed into banned user group</strong></span>
+						</label>
+						<p class="help-block">
+							By default banned users arent logged in and an error is thrown. If enabled, banned users are logged in and placed in the banned group.
+						</p>
 					</div>
 					<div class="checkbox">
 						<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
@@ -120,6 +137,13 @@
 						<input type="text" class="form-control" id="registerOverride" name="registerOverride" />
 						<p class="help-block">
 							If set, users clicking the "Register" button will be redirected to this link instead
+						</p>
+					</div>
+					<div class="form-group">
+						<label for="editOverride">Edit Profile Override</label>
+						<input type="text" class="form-control" id="editOverride" name="editOverride" />
+						<p class="help-block">
+							If set, users clicking the "Edit Profile" button will be redirected to this link instead
 						</p>
 					</div>
 				</div>
@@ -214,6 +238,25 @@
 						</p>
 						<p class="help-block">
 							<code>%1</code> can be used as a placeholder for the link the user landed on (will be URL encoded)
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-2 col-xs-12 settings-header">Reverse Token</div>
+				<div class="col-sm-10 col-xs-12">
+					<div class="form-group">
+						<div class="checkbox">
+							<label for="reverseToken" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+								<input type="checkbox" class="mdl-switch__input" id="reverseToken" name="reverseToken">
+								<span class="mdl-switch__label"><strong>Enabled</strong></span>
+							</label>
+						</div>
+						<p class="help-block">
+							If enabled, NodeBB will save a cookie called <code>nbb_token</code> that can be read by other sites on the same domain. It will allow other sites to authenticate a user session based on NodeBB login state.
+						</p>
+						<p class="help-block">
+							Similar to what is accepted by the session-sharing plugin, the reverse token is a signed <a href="//jwt.io">JWT</a> containing the logged in user's username and uid. Guests will not have an `nbb_token`.
 						</p>
 					</div>
 				</div>

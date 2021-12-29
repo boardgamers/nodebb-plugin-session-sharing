@@ -3,14 +3,14 @@
 	"url": "https://github.com/NodeBB/nodebb-plugin-session-sharing",
 	"library": "./library.js",
 	"hooks": [
-		{ "hook": "filter:router.page", "method": "addMiddleware" },
+		{ "hook": "response:router.page", "method": "addMiddleware" },
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
 		{ "hook": "static:user.loggedOut", "method": "cleanup" },
 		{ "hook": "filter:config.get", "method": "appendConfig" },
 		{ "hook": "filter:middleware.render", "method": "appendTemplate" },
 		{ "hook": "action:settings.set", "method": "reloadSettings" },
-		{ "hook": "static:user.loggedOut", "method": "handleLogout" }
+		{ "hook": "action:login.continue", "method": "saveReverseToken" }
 	],
 	"less": [
 		"static/style.less"
